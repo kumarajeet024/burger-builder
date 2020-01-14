@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Layout from "./component/Layout/Layout";
+import Builder from "./containers/Builder/Builder";
 class App extends Component {
   render(){
     return (
     <div>
         <Layout>
-            Test
+            <Builder></Builder>
         </Layout>
     </div>
       );
