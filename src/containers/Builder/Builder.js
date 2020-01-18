@@ -33,9 +33,7 @@ class Builder extends Component{
         for(let key of Object.values(ingredients)){
             sum+=key;
         }
-
         return sum>0;
-
     }
 
      addingredientsHandler = (type) => {
@@ -74,6 +72,13 @@ class Builder extends Component{
         this.setState({purchasing:true})
     }
 
+    purchasingCancel = () => {
+        this.setState({purchasing:false})
+    }
+
+    purchasingContinueHandler = () =>{
+        alert("You have purchased");
+    }
     render(){
         const disabledInfo = {
             ...this.state.burgerIngredients
@@ -83,8 +88,11 @@ class Builder extends Component{
         }
         return(
             <Aux>
-                <Modal show={this.state.purchasing}>
-                    <OrderSummary ingredients ={this.state.burgerIngredients}></OrderSummary>
+                <Modal show={this.state.purchasing} modalClicked={this.purchasingCancel}>
+                    <OrderSummary ingredients ={this.state.burgerIngredients} 
+                    cancel={this.purchasingCancel} 
+                    continue={this.purchasingContinueHandler}
+                    price={this.state.totalPrice}></OrderSummary>
                 </Modal>
                 <Burger burgerIngredients={this.state.burgerIngredients} />
                 <Controls addedIngredient = {this.addingredientsHandler} 
